@@ -8,7 +8,7 @@
         let selectOption = component.get("v.selectedOptionValue");
         
         // if the option was already selected then we need to start a new game
-        if(selectOption)
+        if(selectOption == "easy" || selectOption == "medium" || selectOption =="hard")
         {
             let comp = component.find("boardComp");
             comp.resetTheBoard();

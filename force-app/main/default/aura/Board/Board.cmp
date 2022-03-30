@@ -8,11 +8,13 @@
     <aura:attribute name ="blockSize" type="Integer" />
     <aura:attribute name="boardDisabled" type="Boolean" default="false"/>
     <aura:attribute name="result" type="String" default=""/>
-
-
+    <aura:attribute name="isBoardReset" type ="Boolean" default="false"/>
+    <!-- Create a map here key=WordName and Value is Boolean value-->
+    <!-- Store the words that are displayed and then dont display them-->
+    <aura:attribute name="wordMap" type="Map" default="{}"/>
     <!-- Handler method for event-->
     <aura:handler name="blkEvent" event="c:blockClickEvent" action="{!c.blockClickEvent}"/>
-
+    <aura:attribute name="isOpenFlag" type="Boolean" default="false"/>
     <!-- Aura method to be called from parent component-->
     <aura:method name="resetTheBoard" action="{!c.doinit}"/>
 
@@ -35,13 +37,13 @@
         <aura:if isTrue="{!v.boardDisabled}">
                 <div class="board-disabled"></div>
         </aura:if>
-        
+      
 
          <lightning:layout multipleRows="true">
              
             <aura:iteration items="{!v.words}" var="word">
                 <lightning:layoutItem size="{!v.blockSize}" padding="around-small"> 
-                    <c:block gameWord="{!word}" />    
+                    <c:block gameWord="{!word}" open="{#isOpenFlag}"/>    
                 </lightning:layoutItem>
             </aura:iteration>
            
